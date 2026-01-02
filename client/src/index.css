@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #0F172A; /* Slate 900 - Deep Professional Blue-Black */
+    --color-secondary: #3B82F6; /* Blue 500 - Vibrant Action Color */
+    --color-accent: #64748B; /* Slate 500 - Muted Professional Text */
+    --color-background: #F8FAFC; /* Slate 50 - Clean Professional Background */
+    --color-surface: #FFFFFF; /* Pure White Surface */
+}
+
+*{
+    font-family: Outfit;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        background-color: var(--color-background);
+        color: var(--color-primary);
+    }
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+
+.rich-text { font-size: 15px; color: #7A7B7D; }
+
+.rich-text p { margin-bottom: 16px;}
+
+.rich-text h1 { font-size: 36px; font-weight: 800; color: #252525; margin: 1.5rem 0 1rem; }
+
+.rich-text h2 { font-size: 22px; font-weight: 700; color: #252525; margin: 1.5rem 0 1rem; }
+  
+.rich-text h3 { font-size: 18px; font-weight: 600; color: #333333; margin: 1.5rem 0 1rem; }
+
+.rich-text h4 { font-size: 16px; font-weight: 500; color: #444444; margin: 1.5rem 0 1rem; }
+
+.rich-text h5 { font-size: 14px; font-weight: 400; color: #555555; margin: 1.5rem 0 1rem; }
+
+.rich-text h4 { font-size: 12px; font-weight: 400; color: #666666; margin: 1.5rem 0 1rem; }
+
+.rich-text strong { font-weight: 700; }
+
+.rich-text ol { margin-left: 30px; list-style-type: decimal; }
+
+.rich-text ul { margin-left: 30px; list-style-type: disc; }
+
+.rich-text li { margin-bottom: 8px; }
+
+
+table, th, td {
+  border: none !important;
+}
+
+
+
