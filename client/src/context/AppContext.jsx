@@ -3,7 +3,8 @@ import { jobsData } from "../assets/assets";
 import axios from "axios";
 
 // Point axios to backend during development
-axios.defaults.baseURL = axios.defaults.baseURL || "http://localhost:5000";
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+axios.defaults.baseURL = backendUrl;
 
 export const AppContext = createContext();
 
