@@ -29,7 +29,7 @@ await connectDB();
 await connectCloudinary();
 
 // Middlewares
-app.use(cors());
+app.use(cors()); // Allow all origins by default for simplicity
 app.use(express.json()); // parse JSON
 app.use(express.urlencoded({ extended: true })); // parse form data
 
