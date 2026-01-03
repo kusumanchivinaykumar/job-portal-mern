@@ -2,6 +2,7 @@ import Job from "../models/Job.js"
 import { v2 as cloudinary } from "cloudinary";
 import User from "../models/User.js"
 import path from "path";
+import generateToken from "../utils/generateToken.js";
 
 // Get all jobs
 export const getJobs = async (req, res) => {
@@ -178,4 +179,22 @@ export const getUserProfile = async (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, message: error.message })
   }
+}
+
+// Auth user for frontend
+export const authUser = async (req, res) => {
+    try {
+        const { userId, name, email, image } = req.body;
+        
+        // Find or update user
+        const user = await User.findByIdAndUpdate(
+            userId,
+            { _id: userId, name, email, image },
+            { upsert: true, new: true }
+        );
+
+        res.json({ success: true, token: generateToken(userId), user });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
 }

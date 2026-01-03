@@ -3,7 +3,7 @@ import { jobsData } from "../assets/assets";
 import axios from "axios";
 
 // Point axios to backend during development
-const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://job-portal-server-alpha-eight.vercel.app";
 axios.defaults.baseURL = backendUrl;
 
 export const AppContext = createContext();

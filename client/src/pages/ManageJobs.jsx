@@ -5,9 +5,6 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import ConfirmModal from '../components/ConfirmModal'
 
-// Ensure axios hits backend when static-served
-axios.defaults.baseURL = axios.defaults.baseURL || 'http://localhost:5000'
-
 const ManageJobs = () => {
 
   const navigate = useNavigate()

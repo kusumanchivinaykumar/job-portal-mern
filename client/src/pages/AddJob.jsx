@@ -5,9 +5,6 @@ import axios from 'axios'
 import { AppContext } from '../context/AppContext'
 import { toast } from 'react-toastify'
 
-// Ensure axios hits the backend API even when static-served
-axios.defaults.baseURL = axios.defaults.baseURL || 'http://localhost:5000'
-
 const AddJob = () => {
 
   const [title, setTitle] = useState('');

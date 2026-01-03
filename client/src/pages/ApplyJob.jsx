@@ -11,9 +11,6 @@ import JobCard from '../components/JobCard'
 import Footer from '../components/Footer'
 import { useClerk, useUser } from '@clerk/clerk-react'
 
-// Ensure axios hits the backend API even when this page loads standalone
-axios.defaults.baseURL = axios.defaults.baseURL || "http://localhost:5000";
-
 const ApplyJob = () => {
 
   const { id } = useParams()
@@ -43,12 +40,17 @@ const ApplyJob = () => {
     }
   }, [id, jobs])
 
-  // Helper to ensure we have a dev token for the logged-in Clerk user
+  // Helper to ensure we have a token for the logged-in Clerk user
   const ensureToken = useCallback(async () => {
     let token = localStorage.getItem("userToken")
     if (!token) {
-      const devTok = await axios.get('/dev/user-token', { params: { userId: user.id, name: user.fullName, email: user.primaryEmailAddress?.emailAddress, image: user.imageUrl } })
-      token = devTok.data.token
+      const { data } = await axios.post('/api/jobs/auth', { 
+        userId: user.id, 
+        name: user.fullName, 
+        email: user.primaryEmailAddress?.emailAddress, 
+        image: user.imageUrl 
+      })
+      token = data.token
       localStorage.setItem("userToken", token)
     }
     return token

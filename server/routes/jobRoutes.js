@@ -6,7 +6,8 @@ import {
   getJobs,
   getJobById,
   updateUserResume,
-  getUserProfile
+  getUserProfile,
+  authUser
 } from "../controllers/jobController.js"
 import { protectUser } from "../middleware/authMiddleware.js"
 
@@ -15,6 +16,9 @@ const router = express.Router()
 // ==========================
 // PUBLIC ROUTES
 // ==========================
+
+// Auth user
+router.post("/auth", authUser)
 
 // Get all jobs
 router.get("/", getJobs)

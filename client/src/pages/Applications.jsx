@@ -6,9 +6,6 @@ import moment from 'moment'
 import Footer from '../components/Footer'
 import { useClerk, useUser } from '@clerk/clerk-react'
 
-// Ensure axios hits the backend API when served statically
-axios.defaults.baseURL = axios.defaults.baseURL || 'http://localhost:5000'
-
 const Applications = () => {
 
   const [isEdit, setIsEdit] = useState(false)
@@ -92,10 +89,10 @@ const Applications = () => {
     } catch (error) {
       if (error.response?.status === 401) {
         try {
-          // Refresh dev token tied to current Clerk user and retry once
+          // Refresh token tied to current Clerk user and retry once
           localStorage.removeItem('userToken')
-          const devTok = await axios.get('/dev/user-token', { params: { userId: user.id } })
-          const newToken = devTok.data.token
+          const { data } = await axios.post('/api/jobs/auth', { userId: user.id, name: user.fullName, email: user.primaryEmailAddress?.emailAddress, image: user.imageUrl })
+          const newToken = data.token
           localStorage.setItem('userToken', newToken)
           await axios.post('/api/jobs/resume', (() => { const fd = new FormData(); fd.append('resume', resume); return fd; })(), {
             headers: { Authorization: `Bearer ${newToken}` }

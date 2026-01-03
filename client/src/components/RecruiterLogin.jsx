@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { assets } from '../assets/assets';
 import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const RecruiterLogin = () => {
   const [state, setState] = useState('Login');
@@ -41,12 +42,7 @@ const RecruiterLogin = () => {
         formData.append("password", password);
         if (image) formData.append("image", image);
 
-        const res = await fetch("http://localhost:5000/api/company/register", {
-          method: "POST",
-          body: formData,
-        });
-
-        const data = await res.json();
+        const { data } = await axios.post("/api/company/register", formData);
 
         if (!data.success) {
           setErrorMsg(data.message || "Signup failed");
@@ -70,13 +66,7 @@ const RecruiterLogin = () => {
 
       // ================= LOGIN =================
       if (state === "Login") {
-        const res = await fetch("http://localhost:5000/api/company/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        });
-
-        const data = await res.json();
+        const { data } = await axios.post("/api/company/login", { email, password });
 
         if (!data.success) {
           setErrorMsg(data.message || "Invalid email or password");
