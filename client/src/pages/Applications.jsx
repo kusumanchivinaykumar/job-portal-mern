@@ -29,8 +29,13 @@ const Applications = () => {
 
         let token = localStorage.getItem('userToken')
         if (!token) {
-          const devTok = await axios.get('/dev/user-token', { params: { userId: user.id, name: user.fullName, email: user.primaryEmailAddress?.emailAddress, image: user.imageUrl } })
-          token = devTok.data.token
+          const { data } = await axios.post('/api/jobs/auth', {
+            userId: user.id,
+            name: user.fullName,
+            email: user.primaryEmailAddress?.emailAddress,
+            image: user.imageUrl
+          })
+          token = data.token
           localStorage.setItem('userToken', token)
         }
 
@@ -71,8 +76,13 @@ const Applications = () => {
 
       let token = localStorage.getItem('userToken')
       if (!token) {
-        const devTok = await axios.get('/dev/user-token', { params: { userId: user.id, name: user.fullName, email: user.primaryEmailAddress?.emailAddress, image: user.imageUrl } })
-        token = devTok.data.token
+        const { data } = await axios.post('/api/jobs/auth', {
+          userId: user.id,
+          name: user.fullName,
+          email: user.primaryEmailAddress?.emailAddress,
+          image: user.imageUrl
+        })
+        token = data.token
         localStorage.setItem('userToken', token)
       }
 
